@@ -13,6 +13,7 @@ The Clickbait Detector leverages a fine-tuned DistilBERT model to analyze headli
 - **Interactive Web App**: Built with Streamlit, allowing users to predict headlines, correct labels, and visualize insights.
 - **Data Visualization**: Generates word clouds and label distribution charts using Plotly and WordCloud.
 - **Dataset Management**: Combines scraped, corrected, and original data into a unified dataset with deduplication.
+- **Demo on YouTube** : [Link](https://youtu.be/SHChMa8tb0M)
 
 ## Features
 
