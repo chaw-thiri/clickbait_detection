@@ -1,101 +1,154 @@
-# Clickbait Detector
+# Clickbait Detector: An AI-Powered Headline Classification System
 
-A Python-based machine learning model to classify news headlines as either "Clickbait" or "Non-Clickbait" using DistilBERT, a lightweight transformer model.
+
+Welcome to the **Clickbait Detector**, a sophisticated machine learning project designed to classify news headlines as "Clickbait" or "Non-Clickbait" using advanced natural language processing (NLP) techniques. This project showcases the seamless integration of multiple technologies—web scraping, transformer-based NLP models, real-time data fetching, data visualization, and interactive web applications—to deliver a robust and user-friendly solution. Developed as a portfolio piece to demonstrate expertise in AI, data science, and full-stack development, this project is ideal for clients seeking innovative, data-driven solutions.
 
 ## Project Overview
 
-This project implements a binary text classification model to identify clickbait headlines. It uses the `DistilBertForSequenceClassification` model from the Hugging Face `transformers` library, fine-tuned on a dataset of labeled headlines (`headlines_dataset.csv`). The model is trained to distinguish between sensationalized clickbait and legitimate news headlines, achieving high accuracy and F1-score on validation data.
+The Clickbait Detector leverages a fine-tuned DistilBERT model to analyze headlines with high accuracy, distinguishing sensationalist clickbait from legitimate news. The system integrates a pipeline of tools for data collection, model training, real-time analysis, and user interaction, making it a comprehensive showcase of modern AI and web technologies. Key features include:
+
+- **Web Scraping**: Dynamically extracts headlines from news websites using Selenium and BeautifulSoup.
+- **Real-Time Data Fetching**: Retrieves trending headlines via the News API for up-to-date analysis.
+- **NLP Model**: Employs a DistilBERT transformer model for precise headline classification.
+- **Interactive Web App**: Built with Streamlit, allowing users to predict headlines, correct labels, and visualize insights.
+- **Data Visualization**: Generates word clouds and label distribution charts using Plotly and WordCloud.
+- **Dataset Management**: Combines scraped, corrected, and original data into a unified dataset with deduplication.
 
 ## Features
 
-- **Dataset**: Processes `headlines_dataset.csv` with columns `headline` and `label` ("Clickbait" or "Non-Clickbait").
-- **Model**: Fine-tunes DistilBERT for binary classification.
-- **Training**: Uses AdamW optimizer with a step learning rate scheduler, training for 5 epochs.
-- **Evaluation**: Reports training/validation loss, accuracy, and F1-score.
-- **Inference**: Provides a `predict_clickbait` function to classify new headlines.
-- **Logging**: Comprehensive logging for debugging and monitoring.
-- **Model Saving**: Saves the best model based on validation loss.
+- **Headline Classification**: Predicts whether a headline is clickbait or non-clickbait with confidence scores using a fine-tuned DistilBERT model.
+- **Dynamic Web Scraping**: Collects headlines from sites like BBC, Reuters, and BuzzFeed, with robust error handling and site-specific selectors.
+- **Trending News Analysis**: Fetches and classifies trending headlines in real-time using the News API.
+- **User Interaction**: Allows users to input custom headlines, correct model predictions, and save corrections via a Streamlit app.
+- **Exploratory Data Analysis (EDA)**: Visualizes dataset insights with interactive bar charts and word clouds.
+- **Automated Workflow**: Orchestrates scraping, dataset updates, model training, and app launch through a single script.
+- **Robust Error Handling**: Includes comprehensive logging to ensure reliability across components.
 
-## Requirements
+## Technology Stack
 
-- Python 3.7+
-- Required packages (install via `pip`):
-  ```bash
-  pip install torch==2.0.1
-  pip install transformers==4.52.4
-  pip install pandas==1.5.3
-  pip install scikit-learn==1.2.2
-  ```
+The Clickbait Detector integrates a diverse set of technologies, demonstrating proficiency in AI, data processing, and web development:
 
-## Installation
+- **Machine Learning & NLP**:
+  - **PyTorch**: Powers the DistilBERT model for training and inference.
+  - **Transformers (Hugging Face)**: Provides pre-trained DistilBERT models and tokenizers for NLP tasks.
+  - **scikit-learn**: Used for dataset splitting and performance metrics (accuracy, F1-score).
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd clickbait-detector
-   ```
+- **Web Scraping**:
+  - **Selenium**: Handles dynamic content rendering for modern websites.
+  - **BeautifulSoup**: Parses HTML to extract headlines with site-specific selectors.
+  - **requests**: Fetches static web content efficiently.
 
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+- **Data Processing**:
+  - **pandas**: Manages datasets, including merging, deduplication, and filtering.
+  - **NumPy**: Supports numerical operations during data preprocessing.
 
-3. Ensure `headlines_dataset.csv` is in the project directory with the following format:
-   ```csv
-   headline,label
-   "This celebrity's diet secret will SHOCK you!",Clickbait
-   "Engineers develop new shock-resistant material.",Non-Clickbait
-   ...
-   ```
+- **Web Development**:
+  - **Streamlit**: Builds an interactive web app for user input, predictions, and visualizations.
+  - **Plotly**: Creates interactive bar charts for label distribution.
+  - **WordCloud**: Generates visual representations of headline content.
 
-## Usage
+- **API Integration**:
+  - **News API**: Retrieves real-time trending headlines for analysis.
 
-1. **Train the Model**:
-   Run the script to train the model:
-   ```bash
-   python clickbait_detector.py
-   ```
-   - The script loads the dataset, trains the model for 5 epochs, and saves the best model to `./clickbait_detector_model`.
-   - Training progress, including loss, accuracy, and F1-score, is logged to the console.
+- **System Integration**:
+  - **logging**: Implements comprehensive logging for debugging and monitoring.
+  - **subprocess**: Orchestrates script execution in the main workflow.
+  - **webdriver-manager**: Automates ChromeDriver setup for Selenium.
 
-2. **Inference**:
-   Use the `predict_clickbait` function to classify new headlines. Example:
-   ```python
-   from clickbait_detector import predict_clickbait
-   headline = "You won't believe what happened next!"
-   result = predict_clickbait(headline)
-   print(f"Headline: {headline} -> Prediction: {result}")
-   ```
+- **Development Tools**:
+  - **Python**: Core programming language for all components.
+  - **Git**: Version control for project management.
 
-3. **Example Output**:
-   ```plaintext
-   Headline: This celebrity's diet secret will SHOCK you! -> Prediction: Clickbait
-   Headline: Engineers develop new shock-resistant material for earthquake-prone buildings. -> Prediction: Non-Clickbait
-   ```
+This technology stack highlights the project’s ability to integrate front-end, back-end, and AI components into a cohesive system, making it a standout example for Upwork clients.
 
 ## Project Structure
 
-- `clickbait_detector.py`: Main script containing the model, dataset, training loop, and inference function.
-- `headlines_dataset.csv`: Dataset file (not included; user must provide).
-- `./clickbait_detector_model/`: Directory where the trained model and tokenizer are saved.
-- `README.md`: This file.
+The project is organized into modular scripts, each handling a specific component of the pipeline:
 
-## Notes
+- **`main.py`**: Orchestrates the entire workflow, from scraping to launching the Streamlit app.
+- **`scrape_headlines.py`**: Scrapes headlines from news websites using Selenium and BeautifulSoup.
+- **`update_dataset.py`**: Combines scraped and corrected headlines into the main dataset, ensuring no duplicates.
+- **`clickbait_detector.py`**: Trains and deploys the DistilBERT model for headline classification.
+- **`fetch_trending.py`**: Fetches trending headlines via News API and predicts their labels.
+- **`eda.py`**: Generates word clouds and label distribution charts for dataset insights.
+- **`app.py`**: Runs the Streamlit app for user interaction and visualization.
 
-- **Dataset**: The model expects `headlines_dataset.csv` in the same directory. Ensure it contains valid headlines and labels.
-- **Hardware**: Training uses CUDA if available, otherwise falls back to CPU.
-- **Model Size**: DistilBERT is lightweight but still requires significant memory (~500MB for the model).
-- **Error Handling**: The script includes robust error handling and logging for debugging.
-- **Future Improvements**:
-  - Support for additional labels (e.g., "Unsafe").
-  - Hyperparameter tuning.
-  - Web interface for real-time predictions.
+**Data Files**:
+- `headlines_dataset.csv`: Main dataset containing headlines and labels.
+- `scraped_headlines.csv`: Temporary storage for scraped headlines.
+- `corrected_headlines.csv`: Stores user-corrected labels from the Streamlit app.
+- `trending_headlines.csv`: Contains fetched trending headlines with predicted labels.
+- `clickbait_wordcloud.png` & `non_clickbait_wordcloud.png`: Visualizations of headline content.
 
-## License
+## Installation
 
-This project is licensed under the MIT License.
+To run the Clickbait Detector locally, follow these steps:
 
-## Acknowledgments
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/chaw-thiri/clickbait-detector.git
+   cd clickbait-detector
+   ```
 
-- Built with [Hugging Face Transformers](https://huggingface.co/transformers).
-- Inspired by the need to combat misleading online content.
+2. **Install Dependencies**:
+   Ensure Python 3.8+ is installed, then install required packages:
+   ```bash
+   pip install -r requirements.txt
+   ```
+   Or manually install:
+   ```bash
+   pip install streamlit pandas torch transformers requests beautifulsoup4 selenium webdriver_manager wordcloud matplotlib plotly
+   ```
+
+3. **Prepare the Dataset**:
+   Ensure `headlines_dataset.csv` exists in the project root with at least some initial data (format: `headline,label`).
+
+4. **Obtain a News API Key**:
+   - Sign up at [News API](https://newsapi.org/) to get an API key.
+   - Update `main.py` and `fetch_trending.py` with your API key, or leave it blank to use local fallback.
+
+5. **Run the Project**:
+   Execute the main workflow script:
+   ```bash
+   python main.py
+   ```
+   This will:
+   - Scrape headlines from news websites.
+   - Update the dataset.
+   - Train the model (if needed).
+   - Fetch trending headlines.
+   - Generate EDA visuals.
+   - Launch the Streamlit app (accessible at `http://localhost:8501`).
+
+## Usage
+
+### Streamlit App
+The Streamlit app provides an intuitive interface for interacting with the Clickbait Detector:
+- **Predict a Headline**: Enter a headline to get a clickbait/non-clickbait prediction with a confidence score.
+- **Fetch Trending Headlines**: Input a News API key to retrieve and classify trending news, or use the local `trending_headlines.csv`.
+- **Correct Predictions**: Adjust model predictions and save corrections to `corrected_headlines.csv`.
+- **View Dataset Insights**: Explore label distribution charts and word clouds for clickbait and non-clickbait headlines.
+
+### Command-Line Usage
+Individual scripts can be run for specific tasks:
+- Scrape headlines: `python scrape_headlines.py`
+- Update dataset: `python update_dataset.py`
+- Train model: `python clickbait_detector.py`
+- Fetch trending headlines: `python fetch_trending.py`
+- Generate EDA visuals: `python eda.py`
+
+## Integration Highlights
+
+The Clickbait Detector stands out due to its seamless integration of diverse technologies:
+
+- **Web Scraping + NLP**: Combines Selenium/BeautifulSoup for data collection with DistilBERT for classification, enabling end-to-end headline analysis.
+- **Real-Time Data + AI**: Integrates News API for live data with a pre-trained model for instant predictions.
+- **Frontend + Backend**: Streamlit provides a user-friendly interface, while pandas and PyTorch handle data processing and model training in the backend.
+- **Visualization + Insights**: Plotly and WordCloud deliver interactive and visual insights, enhancing data interpretability.
+- **Modular Design**: Each component (scraping, training, app) is modular, allowing easy updates or extensions.
+
+This integration showcases the ability to build complex, full-stack AI solutions, a valuable skill for Upwork clients in industries like media, marketing, and data science.
+
+
+
+
